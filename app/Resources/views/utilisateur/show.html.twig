@@ -1,0 +1,50 @@
+{% extends 'back.html.twig' %}
+{% block body %}
+<div class=" class="card border-primary mb-3" style="max-width: 20rem;"">
+    <div class="card-header">
+        <i class="fa fa-user"></i> {{ utilisateur.nom}}
+    </div>
+    <div class="card-body">
+       <p class="card-text">
+             <table>
+                <tbody>
+                    <tr>
+                        <th>CIN</th>
+                        <td>{{ utilisateur.cin }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénom</th>
+                        <td>{{ utilisateur.prenom }}</td>
+                    </tr>
+                     <tr>
+                        <th>adresse</th>
+                        <td>{{ utilisateur.adresse }}</td>
+                    </tr>
+                    <tr>
+                        <th>Télephone</th>
+                        <td>{{ utilisateur.telephone }}</td>
+                    </tr>
+                  
+                    <tr>
+                        <td>
+                         <small>
+                                Crée le : 
+                                {{ utilisateur.createAt | date('d/m/Y H:i:s') }}
+                                Modifiée le :
+                                {{ utilisateur.updateAt | date('d/m/Y H:i:s') }}
+                          </small> 
+                      </td>
+                    </tr>
+                   </small> 
+                </tbody>
+            </table>
+       </p>
+    </div>
+    <div>
+
+    </div>
+</div>
+   <a class="btn btn-info " href="{{ path('admin_utilisateur_index') }}">Retour</a>
+    <a class="btn btn-warning" href="{{ path('admin_utilisateur_edit', { 'id': utilisateur.id }) }}">Modifier</a>
+      
+{% endblock %}

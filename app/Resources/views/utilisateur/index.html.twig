@@ -1,0 +1,49 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+    <h1>Liste des utilisateurs </h1>
+    <div class="pull-right">
+            <a class="btn btn-success" href="{{ path('admin_utilisateur_new') }}">
+                <i class="fa fa-plus"></i> Nouvelle utilisateur
+            </a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cin</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Telephone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td><a href="{{ path('admin_utilisateur_show', { 'id': utilisateur.id }) }}">{{ utilisateur.id }}</a></td>
+                <td>{{ utilisateur.cin }}</td>
+                <td>{{ utilisateur.nom }}</td>
+                <td>{{ utilisateur.prenom }}</td>
+                <td>{{ utilisateur.adresse }}</td>
+                <td>{{ utilisateur.telephone }}</td>
+                <td>
+                    <a class="btn btn-secondary" href="{{ path('admin_utilisateur_show', { 'id': utilisateur.id }) }}">Afficher</a>
+                       
+                    <a class="btn btn-warning" href="{{ path('admin_utilisateur_edit', { 'id': utilisateur.id }) }}">Modifier</a>
+                </td>
+                            
+                      
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+ {% block breadcrumb %}
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="">Tableau de bord</a></li>
+        <li class="breadcrumb-item active"><a href="">Liste des utilisateurs</a></li>
+    </ul>
+{% endblock %}

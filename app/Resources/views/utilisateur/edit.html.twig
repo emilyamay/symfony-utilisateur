@@ -1,0 +1,32 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+    <h3>Modifier l'utilisateur</h3>
+
+    {{ form_start(edit_form) }}
+        <div class="form-group">
+             {{ form_row(edit_form.cin,{'attr':{'class': 'form-control'}})}}   
+        </div>
+        <div class="form-group">
+             {{ form_row(edit_form.nom,{'attr':{'class': 'form-control'}})}}   
+        </div>
+        <div class="form-group">
+             {{ form_row(edit_form.prenom,{'attr':{'class': 'form-control'}})}}   
+        </div>
+        <div class="form-group">
+             {{ form_row(edit_form.adresse,{'attr':{'class': 'form-control'}})}}   
+        </div>
+        <div class="form-group">
+             {{ form_row(edit_form.telephone,{'attr':{'class': 'form-control'}})}}   
+        </div>
+        <input class="btn btn-outline-danger" type="submit" value="Modifier" />
+        <a class="btn btn-outline-info" href="{{ path('admin_utilisateur_index') }}">Retour</a>
+    {{ form_end(edit_form) }}
+{% endblock %}
+ {% block breadcrumb %}
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="">Tableau de bord</a></li>
+        <li class="breadcrumb-item"><a href="">Liste des utilisateurs</a></li>
+        <li class="breadcrumb-item active">Edition d'utilisateur</li>
+    </ul>
+{% endblock %}

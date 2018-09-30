@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}MON SITE{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('back/bootstrap.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('fontawesome/css/fontawesome.min.css')}}">
+    </head>
+    <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">MON SITE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Acceuil <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Utilisateur</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">About us</a>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav " >
+                      <li><a href=""><h5><i class="fa fa-cog fa-2x"></i>Connecté tant que: {{ app.user.username }} </h5></a></li>
+                      <li><a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_logout')}}"><i class="fa fa-sign-out"></i>{{'layout.logout' | trans({},'FOSUserBundle')}}</a></li>
+                  </ul>
+        {% else %}
+           <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="{{ path('fos_user_security_login')}}"><i class="fa fa-sign-in"></i>{{'layout.login' | trans({},'FOSUserBundle')}}</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ path('fos_user_registration_register')}}"><i class="fa fa-user"></i>{{'layout.register' | trans({},'FOSUserBundle')}}</a>
+                </li>
+            </ul>
+        {% endif %}
+      </ul>
+  </div>
+</nav>
+<div><br/></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      {%  block breadcrumb %}{% endblock %} 
+    </div>
+  </div>
+
+
+  <div class="row">
+      <div class="col-md-4">
+          <ul class="list-group">
+            <li class="list-group-item"><a href="">Table de bord</a></li>
+            <li class="list-group-item">Utilisateur</li>
+              <li class="list-group-item"><a href="{{ path('admin_utilisateur_index')}}">Liste des utilisateurs</a></li>
+               <li class="list-group-item"><a href="{{ path('admin_utilisateur_new') }}">Nouvelle utilisateur</a></li>
+               <li class="list-group-item">Administration</li>
+                <li class="list-group-item"><a href="">Statistique</a></li>
+
+          </ul>
+      </div>
+    
+      <div class="col-md-8">
+            {% block body %}
+
+            {% endblock %}
+      </div>
+  </div>
+  <div><bt/></div>
+  <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 ">Bannoudfatimaezzahra@gmail.com</div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+      
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
